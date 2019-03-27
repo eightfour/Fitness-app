@@ -50,7 +50,7 @@ ___________.__  __
 * **[kon4](https://github.com/eightfour)** - *Developer*
 * **[K4naR](https://github.com/ChristianAlexanderMichels)**  - *Developer*
 * **[holmma](https://github.com/holmma)** - *Developer*
-* **[Drinjerd](https://github.com/)**  - *Developer*
+* **[Drinjerd](https://github.com/DanielSchottHSRT)**  - *Developer*
 * **[markovaa](https://github.com/)**  - *Developer*
 * **[pgerhard](https://github.com/)**  - *Developer*
 
