@@ -52,7 +52,7 @@ ___________.__  __
 * **[holmma](https://github.com/holmma)** - *Developer*
 * **[Drinjerd](https://github.com/DanielSchottHSRT)**  - *Developer*
 * **[markovaa](https://github.com/)**  - *Developer*
-* **[pgerhard](https://github.com/)**  - *Developer*
+* **[pgerhard](https://github.com/pgerhard)**  - *Developer*
 
 ## License
 
