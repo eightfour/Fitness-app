@@ -51,7 +51,7 @@ ___________.__  __
 * **[K4naR](https://github.com/ChristianAlexanderMichels)**  - *Developer*
 * **[holmma](https://github.com/holmma)** - *Developer*
 * **[Drinjerd](https://github.com/DanielSchottHSRT)**  - *Developer*
-* **[markovaa](https://github.com/)**  - *Developer*
+* **[markovaa](https://github.com/Arina-Markova)**  - *Developer*
 * **[pgerhard](https://github.com/pgerhard)**  - *Developer*
 
 ## License
