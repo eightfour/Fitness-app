@@ -1,0 +1,32 @@
+version: "3.7"
+services:
+  mongodb:
+    image: mongo:4.0.8-xenial
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: zc4HtSXmFSdGU4va
+      MONGO_INITDB_DATABASE: fitness-app
+    networks:
+    - default
+    - web
+    ports:
+    - 27017:27017
+
+  mongoclient:
+    image: mongoclient/mongoclient
+    restart: always
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME="root"
+      - MONGO_INITDB_ROOT_PASSWORD="zc4HtSXmFSdGU4va"
+    networks:
+      - default
+      - web
+    ports:
+      - 3000:3000
+
+networks:
+  default:
+    external: false
+  web:
+    external: true

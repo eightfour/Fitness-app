@@ -57,3 +57,8 @@ ___________.__  __
 ## License
 
 This project is licensed under the MIT License.
+
+### Local Development
+Start the docker-compose containing the infrastructure components
+
+MongoDB Connection URL: mongodb://root:zc4HtSXmFSdGU4va@mongodb:27017
