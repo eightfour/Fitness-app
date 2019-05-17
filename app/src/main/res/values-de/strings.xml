@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FitnessApp</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="menu_gallery">Gallerie</string>
+    <string name="menu_home">Home</string>
+    <string name="menu_send">Verschicken</string>
+    <string name="menu_share">Teilen</string>
+    <string name="menu_slideshow">Diashow</string>
+    <string name="menu_tools">Werkzeuge</string>
+    <string name="nav_header_desc">Navigations Header</string>
+    <string name="navigation_drawer_close">Navigations Menü schliessen</string>
+    <string name="navigation_drawer_open">Navigations Menü öffnen</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_password_reset">Password zurücksetzen</string>
+    <string name="hint_username">Benutzername eingeben</string>
+    <string name="hint_password">Passwort eingeben</string>
+</resources>

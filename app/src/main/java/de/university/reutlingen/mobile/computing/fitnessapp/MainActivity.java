@@ -1,19 +1,19 @@
 package de.university.reutlingen.mobile.computing.fitnessapp;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.util.Base64;
-import android.view.View;
-import android.support.v4.view.GravityCompat;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.MenuItem;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
@@ -27,64 +27,27 @@ import com.android.volley.toolbox.Volley;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.university.reutlingen.mobile.computing.fitnessapp.ui.login.LoginFragment;
+
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoginListener, MainView {
 
-
+    public static final String LOGIN_FRAGMENT_BACKSTACK_ENTRY = "main-activity_login-fragment";
+    private MainPresenter mainPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
 
-        final TextView textView = (TextView) findViewById(R.id.content_text_view);
+        // Initialize the presenter
+        this.mainPresenter = new MainPresenter(this);
+        findViewById(R.id.btn_load_exercise).setOnClickListener(view -> this.mainPresenter.onLoadExercise());
+    }
 
-        final RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://10.0.2.2:8090/fitness-app/api/v1/exercises/b3bc7c26-7d6a-488d-b45f-e29609d83e15";
-
-        // Request a string response from the provided URL.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        // Display the first 500 characters of the response string.
-                        textView.setText("Response is: " + response.substring(0, 500));
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                textView.setText("That didn't work! " + error.networkResponse.toString());
-            }
-        }) {
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                final Map<String, String> headers = new HashMap<>();
-                String creds = String.format("%s:%s","user","8d7910b0-7564-4ba6-9227-2f501049536f");
-                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
-                headers.put("Authorization", auth);
-                return headers;
-            }
-        };
-
-        // Add the request to the RequestQueue.
-        queue.add(stringRequest);
+    @Override
+    protected void onResume() {
+        super.onResume();
+        this.mainPresenter.onResume();
     }
 
     @Override
@@ -126,7 +89,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_home) {
-            // Handle the camera action
+
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_slideshow) {
@@ -142,5 +105,58 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onLogin() {
+        getSupportFragmentManager().popBackStackImmediate();
+    }
+
+    @Override
+    public void init() {
+        setContentView(R.layout.activity_main);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        FloatingActionButton fab = findViewById(R.id.fab);
+        fab.setOnClickListener(view -> Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
+        NavigationView navigationView = findViewById(R.id.nav_view);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    public Context getContext() {
+        return getApplicationContext();
+    }
+
+    @Override
+    public void showLoginFragment() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content_frame, new LoginFragment())
+                .addToBackStack(LOGIN_FRAGMENT_BACKSTACK_ENTRY)
+                .commit();
+    }
+
+    @Override
+    public void hideLoginFragment() {
+        getSupportFragmentManager().popBackStack(LOGIN_FRAGMENT_BACKSTACK_ENTRY, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+    }
+
+    @Override
+    public void showError(String error){
+        final TextView textView = (TextView) findViewById(R.id.content_text_view);
+        textView.setText(error);
+    }
+
+    @Override
+    public void showExercise(String exercise){
+        final TextView textView = (TextView) findViewById(R.id.content_text_view);
+        textView.setText(exercise);
     }
 }
