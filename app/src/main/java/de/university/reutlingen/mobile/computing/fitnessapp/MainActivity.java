@@ -1,6 +1,7 @@
 package de.university.reutlingen.mobile.computing.fitnessapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -11,21 +12,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Base64;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.TextView;
+import android.view.View;
 
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.login.LoginFragment;
 
@@ -41,7 +31,11 @@ public class MainActivity extends AppCompatActivity
 
         // Initialize the presenter
         this.mainPresenter = new MainPresenter(this);
-        findViewById(R.id.btn_load_exercise).setOnClickListener(view -> this.mainPresenter.onLoadExercise());
+
+
+
+
+
     }
 
     @Override
@@ -127,6 +121,9 @@ public class MainActivity extends AppCompatActivity
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
+
+
+
     }
 
     @Override
@@ -150,13 +147,23 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void showError(String error){
-        final TextView textView = (TextView) findViewById(R.id.content_text_view);
-        textView.setText(error);
+      //  final TextView textView = (TextView) findViewById(R.id.content_text_view);
+       // textView.setText(error);
     }
 
     @Override
     public void showExercise(String exercise){
-        final TextView textView = (TextView) findViewById(R.id.content_text_view);
-        textView.setText(exercise);
+       // final TextView textView = (TextView) findViewById(R.id.content_text_view);
+       // textView.setText(exercise);
     }
+
+    public void startTrainingsPlanActivity(View view){
+
+
+        Intent intent = new Intent(this,TrainingsPlan.class);
+        startActivity(intent);
+
+    }
+
+
 }

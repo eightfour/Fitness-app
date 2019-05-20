@@ -19,8 +19,9 @@
     <string name="login_preferences" translatable="false">de.university.reutlingen.mobile.computing.fitnessApp.LOGIN_PREFERENCES</string>
     <string name="login_preferences_token" translatable="false">{}</string>
     <string name="btn_login">Login</string>
-    <string name="btn_password_reset" >Reset Password</string>
+    <string name="btn_password_reset">Reset Password</string>
     <string name="hint_username">Enter Username</string>
     <string name="hint_password">Enter Password</string>
-    <string name="btn_load_exercise">Load Exercise</string>
+    <string name="btn_load_exercise" translatable="false">Load Exercise</string>
+    <string name="btn_startTrainingsplanActivity" translatable="false">Mein Trainingsplan</string>
 </resources>

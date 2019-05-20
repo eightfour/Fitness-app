@@ -21,7 +21,7 @@ public class MainPresenter {
 
     public MainPresenter(MainView view) {
         this.view = view;
-
+        System.out.println("created MainPresenter with view : " + this.view);
         this.view.init();
     }
 
@@ -39,7 +39,7 @@ public class MainPresenter {
     }
 
 
-    void onLoadExercise() {
+    void getExerciseById() {
 
         final RequestQueue queue = Volley.newRequestQueue(view.getContext());
         String url = "http://10.0.2.2:8090/fitness-app/api/v1/exercises/b3bc7c26-7d6a-488d-b45f-e29609d83e15";
@@ -48,6 +48,35 @@ public class MainPresenter {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 response -> {
                     this.view.showExercise("Exercise: " + response);
+                },
+                error -> this.view.showError("Error: " + error.getMessage())) {
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                final Map<String, String> headers = new HashMap<>();
+                String creds = String.format("%s:%s", "user", "8d7910b0-7564-4ba6-9227-2f501049536f");
+                String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
+                headers.put("Authorization", auth);
+                return headers;
+            }
+        };
+        // Add the request to the RequestQueue.
+        queue.add(stringRequest);
+    }
+
+
+    void getAllExercises() {
+
+        System.out.println("view content:" + view.getContext());
+
+        final RequestQueue queue = Volley.newRequestQueue(view.getContext());
+        String url = "http://10.0.2.2:8090/fitness-app/api/v1/exercises/plans/";
+
+        // Request a string response from the provided URL.
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
+                response -> {
+                    this.view.showExercise("Exercise: " + response);
+
                 },
                 error -> this.view.showError("Error: " + error.getMessage())) {
 
