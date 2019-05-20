@@ -14,10 +14,4 @@ public interface MainView {
     void showLoginFragment();
 
     void hideLoginFragment();
-
-    void showError(String error);
-
-    void showExercise(String exercise);
-
-
 }
