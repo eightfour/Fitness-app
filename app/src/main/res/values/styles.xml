@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -17,4 +17,8 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+    <style name="LoginButtonStyle" parent="@android:style/Widget.Button">
+        <item name="android:background">@color/colorWhite</item>
+        <item name="android:radius">5dp</item>
+    </style>
 </resources>
