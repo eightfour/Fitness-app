@@ -16,6 +16,7 @@ import android.view.MenuItem;
 
 import org.apache.commons.lang3.StringUtils;
 
+import de.university.reutlingen.mobile.computing.fitnessapp.ui.exercise.ExerciseFragement;
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.login.LoginFragment;
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.model.TrainingPlanReference;
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.plan.TrainingPlansFragment;
@@ -27,6 +28,7 @@ public class MainActivity extends AppCompatActivity
     public static final String LOGIN_FRAGMENT_BACKSTACK_ENTRY = "main-activity_login-fragment";
     public static final String TRAINING_PLANS_FRAGMENT_BACKSTACK_ENTRY = "main-activity_training-plans-fragment";
     public static final String TRAINING_PLAN_DETAIL_FRAGMENT_BACKSTACK_ENTRY = "main-activity_training-plan-detail-fragment";
+    public static final String EXERCISE_DETAIL_FRAGMENT_BACKSTACK_ENTRY = "main-activity_exercise-detail-fragment";
     private MainPresenter mainPresenter;
 
     @Override
@@ -81,18 +83,10 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_home) {
-
-        } else if (id == R.id.nav_gallery) {
+        if (id == R.id.nav_gallery) {
             this.replaceFragment(new TrainingPlansFragment(), TRAINING_PLANS_FRAGMENT_BACKSTACK_ENTRY, true);
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_tools) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        } else if ( id == R.id.nav_slideshow ){
+            this.replaceFragment(new ExerciseFragement(), EXERCISE_DETAIL_FRAGMENT_BACKSTACK_ENTRY, true);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
