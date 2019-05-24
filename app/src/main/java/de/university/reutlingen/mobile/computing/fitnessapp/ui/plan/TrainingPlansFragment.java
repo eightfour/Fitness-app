@@ -68,6 +68,7 @@ public class TrainingPlansFragment extends Fragment {
             final TrainingPlansRequest trainingPlansRequest = new TrainingPlansRequest(response -> {
                 adapter.updateItems(response);
                 adapter.notifyDataSetChanged();
+
             }, error -> {
                 System.out.println("ERROR Loading Training Plans");
             });

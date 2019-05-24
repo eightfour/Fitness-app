@@ -11,8 +11,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONObject;
+
 import de.university.reutlingen.mobile.computing.fitnessapp.ErrorCodes;
 import de.university.reutlingen.mobile.computing.fitnessapp.R;
+import de.university.reutlingen.mobile.computing.fitnessapp.rest.client.JsonRequest;
+import de.university.reutlingen.mobile.computing.fitnessapp.rest.client.v1.TrainingPlanDetailRequest;
 
 /**
  * Fragment to display details of a training plan.
@@ -39,6 +47,7 @@ public class TrainingPlanDetailFragment extends Fragment implements TrainingPlan
         super.onViewCreated(view, savedInstanceState);
 
         if (getArguments() != null) {
+            System.out.println("entered onViewCreated new TrainingsPlanPresenter");
             this.presenter = new TrainingPlanDetailPresenter(this, getArguments().getString(PLAN_ID));
         } else {
             throw new IllegalArgumentException(ErrorCodes.MISSING_PLAN_ID.getMessage());
@@ -58,7 +67,21 @@ public class TrainingPlanDetailFragment extends Fragment implements TrainingPlan
 
     @Override
     public void displayPlanId(String identifier) {
+        System.out.println("identifier is : " + identifier);
         final TextView planIdView = (TextView) getView().findViewById(R.id.plan_id_value);
-        planIdView.setText(identifier);
+        RequestQueue queue = Volley.newRequestQueue(getView().getContext());
+        TrainingPlanDetailRequest detailRequest = new TrainingPlanDetailRequest(identifier, response -> {
+
+            planIdView.setText(response.getExerciseList().toString());
+        }, error -> {
+            planIdView.setText("Error");
+        });
+
+       queue.add(detailRequest);
+    }
+
+    @Override
+    public void updateItems(String response) {
+
     }
 }

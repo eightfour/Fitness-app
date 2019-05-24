@@ -20,6 +20,7 @@ public class TrainingPlanDetailRequest extends JsonRequest<TrainingPlan> {
 
     @Override
     protected TrainingPlan doParseBody(String rawBody) throws IOException {
+        System.out.println("raw body is : " + rawBody);
         final ObjectMapper objectMapper = new ObjectMapper();
         return objectMapper.readValue(rawBody, TrainingPlan.class);
     }
