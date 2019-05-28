@@ -1,6 +1,7 @@
 package de.university.reutlingen.mobile.computing.fitnessapp;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -13,17 +14,20 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import org.apache.commons.lang3.StringUtils;
 
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.exercise.ExerciseFragement;
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.login.LoginFragment;
+import de.university.reutlingen.mobile.computing.fitnessapp.ui.model.Exercise;
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.model.TrainingPlanReference;
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.plan.TrainingPlansFragment;
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.plan.detail.TrainingPlanDetailFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements MainView, NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoginListener, TrainingPlansFragment.TrainingPlanSelectionListener {
+        implements MainView, NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoginListener, TrainingPlansFragment.TrainingPlanSelectionListener, TrainingPlanDetailFragment.TrainingPlanDetailSelectionListener {
 
     public static final String LOGIN_FRAGMENT_BACKSTACK_ENTRY = "main-activity_login-fragment";
     public static final String TRAINING_PLANS_FRAGMENT_BACKSTACK_ENTRY = "main-activity_training-plans-fragment";
@@ -161,5 +165,16 @@ public class MainActivity extends AppCompatActivity
         detailFragment.setArguments(bundle);
 
         this.replaceFragment(detailFragment, TRAINING_PLAN_DETAIL_FRAGMENT_BACKSTACK_ENTRY, true);
+    }
+
+    @Override
+    public void onListFragmentInteraction(Exercise item, TextView view) {
+
+        final Bundle bundle = new Bundle();
+        bundle.putString(TrainingPlanDetailFragment.PLAN_ID, item.getId());
+
+        view.setBackgroundColor(Color.GREEN);
+
+
     }
 }

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:context=".ui.plan.detail.TrainingPlanDetailFragment">
 
     <android.support.constraint.ConstraintLayout
@@ -12,33 +12,124 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/plan_id_label"
+            android:id="@+id/textView_Exercise_Description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Exercise_Weight" />
+
+        <TextView
+            android:id="@+id/textView_Exercise_Name"
+            android:layout_width="331dp"
+            android:layout_height="21dp"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="@string/lbl_plan_id"
-            app:layout_constraintEnd_toStartOf="@+id/plan_id_value"
-            app:layout_constraintHorizontal_bias="0.0"
+            android:layout_marginTop="8dp"
+
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/plan_id_value"
-            android:layout_width="0dp"
+            android:id="@+id/textView_Exercise_Repetitions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="@+id/textView_setText_NumOfReps"
+            app:layout_constraintStart_toStartOf="@+id/textView_setText_NumOfReps"
+            app:layout_constraintTop_toBottomOf="@+id/textView_setText_NumOfReps" />
+
+        <TextView
+            android:id="@+id/textView_Exercise_Weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="@+id/textView_SetText_Weight"
+            app:layout_constraintStart_toStartOf="@+id/textView_SetText_Weight"
+            app:layout_constraintTop_toBottomOf="@+id/textView_SetText_Weight" />
+
+        <TextView
+            android:id="@+id/textView_Exercise_BreakTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="@+id/textView_setText_BreakTime"
+            app:layout_constraintStart_toStartOf="@+id/textView_setText_BreakTime"
+            app:layout_constraintTop_toBottomOf="@+id/textView_setText_BreakTime" />
+
+        <TextView
+            android:id="@+id/textView_Exercise_NumOfSets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="TextView"
+            app:layout_constraintEnd_toEndOf="@+id/textView_setText_NumOfSets"
+            app:layout_constraintStart_toStartOf="@+id/textView_setText_NumOfSets"
+            app:layout_constraintTop_toBottomOf="@+id/textView_setText_NumOfSets" />
+
+        <TextView
+            android:id="@+id/textView_setText_NumOfReps"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:layout_marginTop="30dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/plan_id_label" />
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Num of Reps"
+            app:layout_constraintEnd_toStartOf="@+id/textView_setText_NumOfSets"
+            app:layout_constraintStart_toEndOf="@+id/textView_SetText_Weight"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Exercise_Name" />
+
+        <TextView
+            android:id="@+id/textView_setText_NumOfSets"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Num of Sets"
+            app:layout_constraintEnd_toStartOf="@+id/textView_setText_BreakTime"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Exercise_Name" />
+
+        <TextView
+            android:id="@+id/textView_SetText_Weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="Weight"
+            app:layout_constraintStart_toStartOf="@+id/textView_Exercise_Name"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Exercise_Name" />
+
+        <TextView
+            android:id="@+id/textView_setText_BreakTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="Breaktime"
+            app:layout_constraintEnd_toEndOf="@+id/textView_Exercise_Name"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Exercise_Name" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="20dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Exercise_Description" />
+
     </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>

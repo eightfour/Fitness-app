@@ -29,6 +29,9 @@ public class Exercise {
     @JsonProperty("aimUnit")
     private String aimUnit;
 
+    @JsonProperty("id")
+    private String id;
+
     @Override
     public String toString(){
         String weightOutput = "";
@@ -39,6 +42,7 @@ public class Exercise {
         return exerciseDetail.toString()+"\n" + weightOutput;
     }
 
+    public String getId(){return this.id; }
     public ExerciseDetail getExerciseDetail() {
         return exerciseDetail;
     }
