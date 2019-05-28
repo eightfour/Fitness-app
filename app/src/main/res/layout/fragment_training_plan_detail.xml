@@ -10,9 +10,9 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -21,13 +21,15 @@
 
         <TextView
             android:id="@+id/textView_Exercise_Description"
-            android:layout_width="wrap_content"
+            android:layout_width="282dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
-            android:text="TextView"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView_Exercise_Weight" />
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.68"
+            app:layout_constraintStart_toEndOf="@+id/btn_show_Exercise_Description"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Exercise_Repetitions" />
 
         <TextView
             android:id="@+id/textView_Exercise_Name"
@@ -126,9 +128,23 @@
             android:id="@+id/divider"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="28dp"
             android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView_Exercise_Description" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/btn_show_Exercise_Description"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="12dp"
+            android:clickable="true"
+            android:src="@android:drawable/ic_dialog_info"
+            app:backgroundTint="@color/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView_Exercise_Weight" />
 
     </android.support.constraint.ConstraintLayout>
 

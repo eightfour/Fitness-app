@@ -2,6 +2,7 @@ package de.university.reutlingen.mobile.computing.fitnessapp;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -34,6 +35,7 @@ public class MainActivity extends AppCompatActivity
     public static final String TRAINING_PLAN_DETAIL_FRAGMENT_BACKSTACK_ENTRY = "main-activity_training-plan-detail-fragment";
     public static final String EXERCISE_DETAIL_FRAGMENT_BACKSTACK_ENTRY = "main-activity_exercise-detail-fragment";
     private MainPresenter mainPresenter;
+    boolean ExerciseClicked = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -173,8 +175,15 @@ public class MainActivity extends AppCompatActivity
         final Bundle bundle = new Bundle();
         bundle.putString(TrainingPlanDetailFragment.PLAN_ID, item.getId());
 
-        view.setBackgroundColor(Color.GREEN);
+        if(ExerciseClicked){
+            view.setBackgroundColor(Color.GREEN);
 
+        }else{
+            view.setBackgroundColor(Color.TRANSPARENT);
+
+        }
+
+        ExerciseClicked = !ExerciseClicked;
 
     }
 }

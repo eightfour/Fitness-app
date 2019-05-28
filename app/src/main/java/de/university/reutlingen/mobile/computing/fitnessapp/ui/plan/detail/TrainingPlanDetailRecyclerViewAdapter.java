@@ -1,6 +1,7 @@
 package de.university.reutlingen.mobile.computing.fitnessapp.ui.plan.detail;
 
 import android.support.annotation.NonNull;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,6 +25,8 @@ public class TrainingPlanDetailRecyclerViewAdapter extends RecyclerView.Adapter<
 
     private List<Exercise> mValues;
     private final TrainingPlanDetailFragment.TrainingPlanDetailSelectionListener selectionListener;
+    private FloatingActionButton actionBtnShowExerciseDescription;
+
 
     public TrainingPlanDetailRecyclerViewAdapter(List<Exercise> items, TrainingPlanDetailFragment.TrainingPlanDetailSelectionListener listener) {
         mValues = items;
@@ -36,14 +39,26 @@ public class TrainingPlanDetailRecyclerViewAdapter extends RecyclerView.Adapter<
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
+        //set values to text views
         holder.mItem = mValues.get(position);
         holder.mWeight.setText(mValues.get(position).getIntensityLevel()+ " kg");
         holder.mRepetitions.setText(mValues.get(position).getNumOfRepetitions());
         holder.mBreakTime.setText(mValues.get(position).getBreakDurationInSeconds());
-        holder.mDescription.setText(mValues.get(position).getExerciseDetail().getDescription());
         holder.mNumOfSets.setText(mValues.get(position).getNumOfSets());
         holder.mExerciseName.setText(mValues.get(position).getExerciseDetail().getName());
 
+        //set button functionality to show exercise decription
+        holder.btnShowExerciseDescription.setOnClickListener(view ->{
+                if(!holder.actionBtnShowExerciseDescriptionIsClicked) {
+                    holder.mDescription.setText(mValues.get(position).getExerciseDetail().getDescription());
+                }else{
+                    holder.mDescription.setText("");
+                }
+
+                holder.actionBtnShowExerciseDescriptionIsClicked = !holder.actionBtnShowExerciseDescriptionIsClicked;
+        });
+
+        //set listener when an exercise is clicked
         holder.mView.setOnClickListener(v -> {
             if (null != selectionListener) {
                 // Notify the active callbacks interface (the activity, if the
@@ -52,6 +67,9 @@ public class TrainingPlanDetailRecyclerViewAdapter extends RecyclerView.Adapter<
             }
         });
     }
+
+
+
 
     @Override
     public TrainingPlanDetailRecyclerViewAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
@@ -75,6 +93,8 @@ public class TrainingPlanDetailRecyclerViewAdapter extends RecyclerView.Adapter<
         public final TextView mNumOfSets;
         public final TextView mBreakTime;
         public final TextView mExerciseName;
+        public final FloatingActionButton btnShowExerciseDescription;
+        public boolean actionBtnShowExerciseDescriptionIsClicked = false;
 
         public Exercise mItem;
 
@@ -87,6 +107,7 @@ public class TrainingPlanDetailRecyclerViewAdapter extends RecyclerView.Adapter<
             mNumOfSets = (TextView) view.findViewById(R.id.textView_Exercise_NumOfSets);
             mDescription = (TextView) view.findViewById(R.id.textView_Exercise_Description);
             mBreakTime = (TextView) view.findViewById(R.id.textView_Exercise_BreakTime);
+            btnShowExerciseDescription = (FloatingActionButton) view.findViewById(R.id.btn_show_Exercise_Description);
         }
 
 
