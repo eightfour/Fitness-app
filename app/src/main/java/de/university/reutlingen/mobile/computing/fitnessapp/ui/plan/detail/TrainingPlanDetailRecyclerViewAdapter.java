@@ -40,6 +40,7 @@ public class TrainingPlanDetailRecyclerViewAdapter extends RecyclerView.Adapter<
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
         //set values to text views
+        System.out.println("bind ViewHolder");
         holder.mItem = mValues.get(position);
         holder.mWeight.setText(mValues.get(position).getIntensityLevel()+ " kg");
         holder.mRepetitions.setText(mValues.get(position).getNumOfRepetitions());

@@ -93,11 +93,11 @@ public class TrainingPlanDetailFragment extends Fragment implements TrainingPlan
                     + " must implement TrainingPlanSelectionListener");
         }
         // Set the adapter
-        if (this.view instanceof RecyclerView) {
-            Context context = this. view.getContext();
-            RecyclerView recyclerView = (RecyclerView) this.view;
+        if (this.view.getId() == R.id.trainingPlanDetailLayout) {
+            Context context = this.view.getContext();
+            RecyclerView recyclerView = (RecyclerView) getView().findViewById(R.id.trainingPlanDetailList);
             recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            final TrainingPlanDetailRecyclerViewAdapter adapter = new TrainingPlanDetailRecyclerViewAdapter(new ArrayList<Exercise>(), selectionListener);
+            final TrainingPlanDetailRecyclerViewAdapter adapter = new TrainingPlanDetailRecyclerViewAdapter(new ArrayList<>(), selectionListener);
             recyclerView.setAdapter(adapter);
 
 
