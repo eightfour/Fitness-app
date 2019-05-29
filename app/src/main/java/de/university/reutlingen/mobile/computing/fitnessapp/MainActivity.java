@@ -23,17 +23,22 @@ import org.apache.commons.lang3.StringUtils;
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.exercise.ExerciseFragement;
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.login.LoginFragment;
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.model.Exercise;
+import de.university.reutlingen.mobile.computing.fitnessapp.ui.model.TrainingPlan;
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.model.TrainingPlanReference;
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.plan.TrainingPlansFragment;
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.plan.detail.TrainingPlanDetailFragment;
+import de.university.reutlingen.mobile.computing.fitnessapp.ui.plan.detail.TrainingPlanDetailPresenter;
+import de.university.reutlingen.mobile.computing.fitnessapp.ui.session.SessionFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements MainView, NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoginListener, TrainingPlansFragment.TrainingPlanSelectionListener, TrainingPlanDetailFragment.TrainingPlanDetailSelectionListener {
+        implements MainView, NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoginListener, TrainingPlansFragment.TrainingPlanSelectionListener,
+        TrainingPlanDetailFragment.TrainingPlanDetailSelectionListener, TrainingPlanDetailPresenter.startSessionListener {
 
     public static final String LOGIN_FRAGMENT_BACKSTACK_ENTRY = "main-activity_login-fragment";
     public static final String TRAINING_PLANS_FRAGMENT_BACKSTACK_ENTRY = "main-activity_training-plans-fragment";
     public static final String TRAINING_PLAN_DETAIL_FRAGMENT_BACKSTACK_ENTRY = "main-activity_training-plan-detail-fragment";
     public static final String EXERCISE_DETAIL_FRAGMENT_BACKSTACK_ENTRY = "main-activity_exercise-detail-fragment";
+    public static final String SESSION_MAIN_FRAGMENT ="main-activity_session_main_fragment";
     private MainPresenter mainPresenter;
     boolean ExerciseClicked = true;
 
@@ -184,6 +189,14 @@ public class MainActivity extends AppCompatActivity
         }
 
         ExerciseClicked = !ExerciseClicked;
+
+    }
+
+
+    @Override
+    public void onSessionStart(TrainingPlan plan) {
+
+        this.replaceFragment(SessionFragment.newInstance(plan),SESSION_MAIN_FRAGMENT,true);
 
     }
 }

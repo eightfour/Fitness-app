@@ -25,7 +25,6 @@ public class TrainingPlanDetailRecyclerViewAdapter extends RecyclerView.Adapter<
 
     private List<Exercise> mValues;
     private final TrainingPlanDetailFragment.TrainingPlanDetailSelectionListener selectionListener;
-    private FloatingActionButton actionBtnShowExerciseDescription;
 
 
     public TrainingPlanDetailRecyclerViewAdapter(List<Exercise> items, TrainingPlanDetailFragment.TrainingPlanDetailSelectionListener listener) {

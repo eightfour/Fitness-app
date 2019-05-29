@@ -19,22 +19,24 @@
         <TextView
             android:id="@+id/weight"
             android:layout_width="match_parent"
-            android:layout_height="40dp" />
+            android:layout_height="40dp"
+            android:text="@string/text_view_session_weight"/>
 
         <TextView
             android:id="@+id/weightValue"
             android:layout_width="match_parent"
-            android:layout_height="40" />
+            android:layout_height="40dp" />
 
         <TextView
             android:id="@+id/reps"
             android:layout_width="match_parent"
-            android:layout_height="40" />
+            android:layout_height="40dp"
+            android:text="@string/text_view_session_reps"/>
 
         <TextView
             android:id="@+id/repsValue"
             android:layout_width="match_parent"
-            android:layout_height="40" />
+            android:layout_height="40dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,13 +46,14 @@
             <TextView
                 android:id="@+id/Sets"
                 android:layout_width="30dp"
-                android:layout_height="40"
-                android:layout_weight="1" />
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="@string/text_view_nr_sets"/>
 
             <TextView
                 android:id="@+id/SetsValue"
                 android:layout_width="wrap_content"
-                android:layout_height="40"
+                android:layout_height="40dp"
                 android:layout_weight="1" />
         </LinearLayout>
 
@@ -62,13 +65,14 @@
             <TextView
                 android:id="@+id/BreakTime"
                 android:layout_width="28dp"
-                android:layout_height="40"
-                android:layout_weight="1" />
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:text="@string/text_view_session_breaktime"/>
 
             <TextView
                 android:id="@+id/BreakTimeValue"
                 android:layout_width="wrap_content"
-                android:layout_height="40"
+                android:layout_height="40dp"
                 android:layout_weight="1" />
         </LinearLayout>
     </LinearLayout>

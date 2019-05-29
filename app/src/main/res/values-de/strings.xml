@@ -19,4 +19,9 @@
     <string name="hint_password">Passwort eingeben</string>
     <string name="btn_load_exercise">Übungen laden</string>
     <string name="lbl_plan_id">Trainingsplane Id:</string>
+    <string name="btn_show_Exercise_Description">Erklärung zeigen</string>
+    <string name="text_view_session_reps">Widerholungen</string>
+    <string name="text_view_nr_sets">Sätze</string>
+    <string name="text_view_session_breaktime">Pause</string>
+    <string name="text_view_session_weight">Gewicht</string>
 </resources>

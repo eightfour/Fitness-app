@@ -121,6 +121,9 @@ public class TrainingPlanDetailFragment extends Fragment implements TrainingPlan
     public void updateItems(String response) {
 
     }
+    public View getView(){
+        return this.view;
+    }
 
     public interface TrainingPlanDetailSelectionListener {
         void onListFragmentInteraction(Exercise items, TextView view);

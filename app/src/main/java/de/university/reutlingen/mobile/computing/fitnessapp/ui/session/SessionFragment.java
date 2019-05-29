@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import de.university.reutlingen.mobile.computing.fitnessapp.R;
+import de.university.reutlingen.mobile.computing.fitnessapp.ui.model.TrainingPlan;
+import de.university.reutlingen.mobile.computing.fitnessapp.ui.plan.detail.TrainingPlanDetailPresenter;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -20,7 +22,9 @@ import de.university.reutlingen.mobile.computing.fitnessapp.R;
  */
 public class SessionFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
+    private TrainingPlanDetailPresenter.startSessionListener mListener;
+    private SessionPresenter sessionPresenter;
+    private TrainingPlan plan;
 
     public SessionFragment() {
         // Required empty public constructor
@@ -30,16 +34,17 @@ public class SessionFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param  plan - Trainingplan thats being passed on when clicking on "start plan" Button
+     *
      * @return A new instance of fragment SessionFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static SessionFragment newInstance(String param1, String param2) {
+    public static SessionFragment newInstance(TrainingPlan plan) {
         SessionFragment fragment = new SessionFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        
+
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -47,6 +52,7 @@ public class SessionFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.sessionPresenter = new SessionPresenter(plan);
 
     }
 
@@ -62,8 +68,8 @@ public class SessionFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+        if (context instanceof TrainingPlanDetailPresenter.startSessionListener) {
+            mListener = (TrainingPlanDetailPresenter.startSessionListener) context;
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");

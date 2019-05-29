@@ -24,5 +24,10 @@
     <string name="hint_password">Enter Password</string>
     <string name="btn_load_exercise">Load Exercise</string>
     <string name="lbl_plan_id">Training Plan Id</string>
-    <string name="btn_show_Exercise_Description" translatable="false">Show Description</string>
+    <string name="btn_show_Exercise_Description">Show Description</string>
+    <string name="text_view_session_weight">Weight</string>
+    <string name="text_view_session_reps">Reps</string>
+    <string name="text_view_nr_sets">Sets</string>
+    <string name="text_view_session_breaktime">Break</string>
+
 </resources>
