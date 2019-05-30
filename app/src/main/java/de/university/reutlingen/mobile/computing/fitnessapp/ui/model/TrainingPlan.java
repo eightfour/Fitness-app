@@ -3,11 +3,12 @@ package de.university.reutlingen.mobile.computing.fitnessapp.ui.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.io.Serializable;
 import java.util.List;
 
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class TrainingPlan {
+public class TrainingPlan implements Serializable {
 
     @JsonProperty("id")
     private String identifier;

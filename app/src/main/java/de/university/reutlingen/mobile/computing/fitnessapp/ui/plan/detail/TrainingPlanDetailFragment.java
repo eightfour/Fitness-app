@@ -42,6 +42,7 @@ public class TrainingPlanDetailFragment extends Fragment implements TrainingPlan
     private TrainingPlanDetailSelectionListener selectionListener;
     private TrainingPlanDetailPresenter presenter;
     private View view;
+
     public TrainingPlanDetailFragment() {
         // Required empty public constructor
     }

@@ -24,6 +24,7 @@ public class TrainingPlanDetailPresenter {
 
 
     public TrainingPlanDetailPresenter(TrainingPlanDetailView view, String planId) {
+
         this.view = view;
         this.planId = planId;
         this.btnStartSessionFragment = this.view.getView().findViewById(R.id.fab_show_session_fragment);
@@ -50,15 +51,16 @@ public class TrainingPlanDetailPresenter {
 
        this.view.displayPlanId(trainingPlan.getIdentifier());
 
+       //sets listener to button when user wants to start the plan
         btnStartSessionFragment.setOnClickListener(v -> {
-            sessionListener.onSessionStart(trainingPlan);
+            sessionListener.onSessionStart(this.view.getView(),trainingPlan);
 
         });
     }
 
     public interface startSessionListener {
 
-        void onSessionStart(TrainingPlan plan);
+        void onSessionStart(View view,TrainingPlan plan);
 
     }
 

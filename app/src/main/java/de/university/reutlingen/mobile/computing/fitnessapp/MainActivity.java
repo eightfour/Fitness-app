@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.se.omapi.Session;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -19,6 +20,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import org.apache.commons.lang3.StringUtils;
+
+import java.io.Serializable;
 
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.exercise.ExerciseFragement;
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.login.LoginFragment;
@@ -194,9 +197,16 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    public void onSessionStart(TrainingPlan plan) {
+    public void onSessionStart(View view,TrainingPlan plan) {
 
-        this.replaceFragment(SessionFragment.newInstance(plan),SESSION_MAIN_FRAGMENT,true);
+        Bundle bundle = new Bundle();
+        SessionFragment sessionFragment = new SessionFragment();
+        bundle.putSerializable("trainingPlan",  plan);
+
+        sessionFragment.setArguments(bundle);
+        System.out.println("entered onSessionStart in MainActivity");
+        this.replaceFragment(sessionFragment,SESSION_MAIN_FRAGMENT,true);
+
 
     }
 }

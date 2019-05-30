@@ -29,5 +29,7 @@
     <string name="text_view_session_reps">Reps</string>
     <string name="text_view_nr_sets">Sets</string>
     <string name="text_view_session_breaktime">Break</string>
+    <string name="btn_minus_symbol">-</string>
+    <string name="btn_plus_symbol">+</string>
 
 </resources>

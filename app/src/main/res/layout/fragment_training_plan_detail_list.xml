@@ -41,6 +41,6 @@
 
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@+id/trainingPlanDetailList"
-        app:srcCompat="@android:drawable/ic_dialog_email"
+        app:srcCompat="@android:drawable/ic_media_play"
         tools:src="@android:drawable/ic_media_play" />
 </android.support.constraint.ConstraintLayout>
