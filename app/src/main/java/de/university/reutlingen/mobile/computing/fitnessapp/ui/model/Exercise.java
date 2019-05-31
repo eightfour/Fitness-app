@@ -21,7 +21,7 @@ public class Exercise {
     private String numOfSets;
 
     @JsonProperty("intensityLevel")
-    private String intensityLevel;
+    private double intensityLevel;
 
     @JsonProperty("intensityUnit")
     private String intensityUnit;
@@ -54,7 +54,7 @@ public class Exercise {
         return intensityUnit;
     }
 
-    public String getIntensityLevel() {
+    public double getIntensityLevel() {
         return intensityLevel;
     }
 
