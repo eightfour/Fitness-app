@@ -32,18 +32,21 @@ import de.university.reutlingen.mobile.computing.fitnessapp.ui.plan.TrainingPlan
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.plan.detail.TrainingPlanDetailFragment;
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.plan.detail.TrainingPlanDetailPresenter;
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.session.SessionFragment;
+import de.university.reutlingen.mobile.computing.fitnessapp.ui.session.detail.SessionDetailFragment;
 
 public class MainActivity extends AppCompatActivity
         implements MainView, NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoginListener, TrainingPlansFragment.TrainingPlanSelectionListener,
-        TrainingPlanDetailFragment.TrainingPlanDetailSelectionListener, TrainingPlanDetailPresenter.startSessionListener {
+        TrainingPlanDetailFragment.TrainingPlanDetailSelectionListener, TrainingPlanDetailPresenter.startSessionListener,SessionFragment.SessionExerciseListener {
 
     public static final String LOGIN_FRAGMENT_BACKSTACK_ENTRY = "main-activity_login-fragment";
     public static final String TRAINING_PLANS_FRAGMENT_BACKSTACK_ENTRY = "main-activity_training-plans-fragment";
     public static final String TRAINING_PLAN_DETAIL_FRAGMENT_BACKSTACK_ENTRY = "main-activity_training-plan-detail-fragment";
     public static final String EXERCISE_DETAIL_FRAGMENT_BACKSTACK_ENTRY = "main-activity_exercise-detail-fragment";
-    public static final String SESSION_MAIN_FRAGMENT ="main-activity_session_main_fragment";
+    public static final String SESSION_FRAGMENT ="main-activity_session_main_fragment";
+    public static final String SESSION_DETAIL_FRAGMENT="main-activity_session_detail_fragment";
+
     private MainPresenter mainPresenter;
-    boolean ExerciseClicked = true;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -183,30 +186,35 @@ public class MainActivity extends AppCompatActivity
         final Bundle bundle = new Bundle();
         bundle.putString(TrainingPlanDetailFragment.PLAN_ID, item.getId());
 
-        if(ExerciseClicked){
-            view.setBackgroundColor(Color.GREEN);
-
-        }else{
-            view.setBackgroundColor(Color.TRANSPARENT);
-
-        }
-
-        ExerciseClicked = !ExerciseClicked;
-
     }
 
 
     @Override
-    public void onSessionStart(View view,TrainingPlan plan) {
+    public void onSessionStart(View view,TrainingPlan plan,int selectedExerciseIndex) {
 
         Bundle bundle = new Bundle();
         SessionFragment sessionFragment = new SessionFragment();
         bundle.putSerializable("trainingPlan",  plan);
+        bundle.putInt("selectedExerciseIndex",selectedExerciseIndex);
+        System.out.println("entered onSessionStart in Main");
 
         sessionFragment.setArguments(bundle);
-        System.out.println("entered onSessionStart in MainActivity");
-        this.replaceFragment(sessionFragment,SESSION_MAIN_FRAGMENT,true);
+        this.replaceFragment(sessionFragment,SESSION_FRAGMENT,true);
 
+
+    }
+
+    @Override
+    public void onExerciseSelected(TrainingPlan plan, int selectedExerciseIndex) {
+
+        Bundle bundle = new Bundle();
+        SessionDetailFragment sessionDetailFragment = new SessionDetailFragment();
+        bundle.putSerializable("trainingPlan",  plan);
+        bundle.putInt("selectedExerciseIndex",selectedExerciseIndex);
+
+        sessionDetailFragment.setArguments(bundle);
+        System.out.println("entered onExerciseSelected in MainActivity");
+        this.replaceFragment(sessionDetailFragment,SESSION_DETAIL_FRAGMENT,true);
 
     }
 }

@@ -25,6 +25,7 @@
 
         <TextView
             android:id="@+id/weight"
+            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
             android:gravity="center"
@@ -84,8 +85,8 @@
 
             <TextView
                 android:id="@+id/Sets"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/text_view_nr_sets" />
@@ -105,8 +106,8 @@
 
             <TextView
                 android:id="@+id/BreakTime"
-                android:layout_width="30dp"
-                android:layout_height="40dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
                 android:text="@string/text_view_session_breaktime" />
@@ -141,10 +142,10 @@
             android:id="@+id/fab_session_start_Exercise"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="60dp"
             android:layout_weight="1"
             android:clickable="true"
-            android:layout_marginLeft="60dp"
-            android:src="@android:drawable/ic_media_play" />
+            android:src="@android:drawable/ic_media_pause" />
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_session_next_Exercise"

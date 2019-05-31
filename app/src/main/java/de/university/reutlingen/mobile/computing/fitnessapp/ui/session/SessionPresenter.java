@@ -1,5 +1,6 @@
 package de.university.reutlingen.mobile.computing.fitnessapp.ui.session;
 
+import android.graphics.Color;
 import android.se.omapi.Session;
 import android.support.design.widget.FloatingActionButton;
 import android.view.View;
@@ -9,9 +10,11 @@ import android.widget.TextView;
 
 import de.university.reutlingen.mobile.computing.fitnessapp.R;
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.model.TrainingPlan;
+import de.university.reutlingen.mobile.computing.fitnessapp.ui.plan.detail.TrainingPlanDetailPresenter;
 
 public class SessionPresenter {
 
+    private SessionFragment.SessionExerciseListener sessionExerciseListener;
     private TrainingPlan trainingPlan;
     private SessionView sessionView;
     private  TextView sessionWeightValue;
@@ -19,26 +22,31 @@ public class SessionPresenter {
     private  TextView sessionRepsValue;
     private  TextView sessionBreakTimeValue;
     private  TextView sessionExerciseName;
-    private int fabChangeExerciseIndex =0;
+    private int fabChangeExerciseIndex ;
     private FloatingActionButton fabNextExercise;
     private FloatingActionButton fabPreviousExercise;
+    private FloatingActionButton fabStartExercise;
     private Button btnIncreaseWeight;
     private Button btnDecreaseWeight;
-    private Double tmpWeightValue;
 
 
-    public SessionPresenter(SessionView view, TrainingPlan trainingPlan){
+
+    public SessionPresenter(SessionView view, TrainingPlan trainingPlan,int selectedExerciseIndex){
 
         this.sessionView = view;
         this.trainingPlan = trainingPlan;
+        this.fabChangeExerciseIndex = selectedExerciseIndex;
         initializeLayoutComponents();
         setTextOfCurrentExercise(this.fabChangeExerciseIndex);
-        tmpWeightValue = trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getIntensityLevel();
 
 
-
-
-
+        // Set the listener
+        if (view.getContext() instanceof TrainingPlanDetailPresenter.startSessionListener){
+            this.sessionExerciseListener = (SessionFragment.SessionExerciseListener) view.getContext();
+        } else {
+            throw new RuntimeException(view.getContext().toString()
+                    + " must implement TrainingPlanDetailPresenter.startSessionListenerx");
+        }
     }
 
     /**
@@ -52,7 +60,18 @@ public class SessionPresenter {
         sessionSetsValue = (TextView) sessionView.getView().findViewById(R.id.text_view_session_sets_value);
         sessionRepsValue = (TextView) sessionView.getView().findViewById(R.id.text_view_session_reps_value);
         sessionBreakTimeValue = (TextView) sessionView.getView().findViewById(R.id.text_view_session_break_time_value);
+        //onclick listener : clicking on the name of an Exercise changes it´s names color to mark exercise as done
         sessionExerciseName = (TextView) sessionView.getView().findViewById(R.id.text_view_session_exercise_name);
+        sessionExerciseName.setOnClickListener(v -> {
+            if (!trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getExerciseIsCompleted()) {
+                sessionExerciseName.setBackgroundColor(Color.GREEN);
+                trainingPlan.getExerciseList().get(fabChangeExerciseIndex).setExerciseIsCompleted(true);
+            }
+            else{
+                sessionExerciseName.setBackgroundColor(Color.TRANSPARENT);
+                trainingPlan.getExerciseList().get(fabChangeExerciseIndex).setExerciseIsCompleted(false);
+            }
+        });
 
         //Floating Action Buttons that let you navigate to another Exercise
         fabNextExercise = sessionView.getView().findViewById(R.id.fab_session_next_Exercise);
@@ -62,6 +81,14 @@ public class SessionPresenter {
             if (fabChangeExerciseIndex == trainingPlan.getExerciseList().size())
                fabChangeExerciseIndex =0;
 
+            if (!trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getExerciseIsCompleted()) {
+                sessionExerciseName.setBackgroundColor(Color.TRANSPARENT);
+
+            }
+            else {
+                sessionExerciseName.setBackgroundColor(Color.GREEN);
+            }
+
             setTextOfCurrentExercise(this.fabChangeExerciseIndex);
         });
 
@@ -69,24 +96,43 @@ public class SessionPresenter {
         fabPreviousExercise.setOnClickListener(v -> {
 
             this.fabChangeExerciseIndex -=1;
+
+
             if(fabChangeExerciseIndex == -1)
                 fabChangeExerciseIndex = trainingPlan.getExerciseList().size() -1;
+
+            if (!trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getExerciseIsCompleted()) {
+                sessionExerciseName.setBackgroundColor(Color.TRANSPARENT);
+
+            }
+            else{
+                sessionExerciseName.setBackgroundColor(Color.GREEN);
+
+            }
             setTextOfCurrentExercise(this.fabChangeExerciseIndex);
         });
 
+        //button that lets you pause the exercise and display a timer
+        fabStartExercise =sessionView.getView().findViewById(R.id.fab_session_start_Exercise);
+        fabStartExercise.setOnClickListener(v -> {
+
+            sessionExerciseListener.onExerciseSelected(this.trainingPlan,this.fabChangeExerciseIndex);
+
+        });
         //Buttons that let you change current Weight by + or - 2.5 kg
         btnIncreaseWeight = sessionView.getView().findViewById(R.id.btn_session_increase_weight_value);
         btnIncreaseWeight.setOnClickListener(v -> {
 
-            tmpWeightValue += 2.5;
-            sessionWeightValue.setText(Double.toString(tmpWeightValue));
+           trainingPlan.getExerciseList().get(fabChangeExerciseIndex).setIntensityLevel(Double.toString(Double.parseDouble(trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getIntensityLevel() )+ 2.5));
+            sessionWeightValue.setText(trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getIntensityLevel() + "kg");
 
         });
         btnDecreaseWeight = sessionView.getView().findViewById(R.id.btn_session_decrease_weight_value);
         btnDecreaseWeight.setOnClickListener(v -> {
 
-           tmpWeightValue -=2.5;
-            sessionWeightValue.setText(Double.toString(tmpWeightValue));
+            trainingPlan.getExerciseList().get(fabChangeExerciseIndex).setIntensityLevel(Double.toString(Double.parseDouble(trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getIntensityLevel() )- 2.5));
+            sessionWeightValue.setText(trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getIntensityLevel() + "kg");
+
         });
     }
 
@@ -97,10 +143,10 @@ public class SessionPresenter {
     private void setTextOfCurrentExercise(int fabChangeExerciseIndex){
 
         sessionExerciseName.setText(trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getExerciseDetail().getName());
-        sessionWeightValue.setText(Double.toString(trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getIntensityLevel()) + "kg");
+        sessionWeightValue.setText(trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getIntensityLevel() + "kg");
         sessionSetsValue.setText(trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getNumOfSets());
         sessionRepsValue.setText(trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getNumOfRepetitions());
-        sessionBreakTimeValue.setText(trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getBreakDurationInSeconds() + "seconds");
+        sessionBreakTimeValue.setText(trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getBreakDurationInSeconds() + " Seconds");
 
     }
 }

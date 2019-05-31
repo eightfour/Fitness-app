@@ -53,14 +53,14 @@ public class TrainingPlanDetailPresenter {
 
        //sets listener to button when user wants to start the plan
         btnStartSessionFragment.setOnClickListener(v -> {
-            sessionListener.onSessionStart(this.view.getView(),trainingPlan);
+            sessionListener.onSessionStart(this.view.getView(),trainingPlan,0);
 
         });
     }
 
     public interface startSessionListener {
 
-        void onSessionStart(View view,TrainingPlan plan);
+        void onSessionStart(View view,TrainingPlan plan,int selectedExerciseIndex);
 
     }
 

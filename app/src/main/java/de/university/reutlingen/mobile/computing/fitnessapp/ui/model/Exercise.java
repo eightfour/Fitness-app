@@ -21,7 +21,7 @@ public class Exercise {
     private String numOfSets;
 
     @JsonProperty("intensityLevel")
-    private double intensityLevel;
+    private String intensityLevel;
 
     @JsonProperty("intensityUnit")
     private String intensityUnit;
@@ -32,6 +32,8 @@ public class Exercise {
     @JsonProperty("id")
     private String id;
 
+    private Boolean exerciseIsCompleted = false;
+
     @Override
     public String toString(){
         String weightOutput = "";
@@ -41,6 +43,10 @@ public class Exercise {
         }
         return exerciseDetail.toString()+"\n" + weightOutput;
     }
+
+    public Boolean getExerciseIsCompleted() {return exerciseIsCompleted;}
+
+    public void setExerciseIsCompleted(Boolean exerciseIsCompleted) {this.exerciseIsCompleted = exerciseIsCompleted;   }
 
     public String getId(){return this.id; }
     public ExerciseDetail getExerciseDetail() {
@@ -54,7 +60,7 @@ public class Exercise {
         return intensityUnit;
     }
 
-    public double getIntensityLevel() {
+    public String getIntensityLevel() {
         return intensityLevel;
     }
 
@@ -70,4 +76,5 @@ public class Exercise {
         return numOfRepetitions;
     }
 
+    public void setIntensityLevel(String intensityLevel){this.intensityLevel = intensityLevel;}
 }

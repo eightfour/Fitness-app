@@ -47,7 +47,7 @@ public class SessionFragment extends Fragment implements SessionView {
 
         if (getArguments() != null) {
             System.out.println("getting Arguments from Fragment into Session");
-            this.sessionPresenter = new SessionPresenter(this, (TrainingPlan) getArguments().getSerializable("trainingPlan"));
+            this.sessionPresenter = new SessionPresenter(this, (TrainingPlan) getArguments().getSerializable("trainingPlan"),getArguments().getInt("selectedExerciseIndex"));
         } else {
             throw new IllegalArgumentException(ErrorCodes.MISSING_PLAN_ID.getMessage());
 
@@ -80,4 +80,8 @@ public class SessionFragment extends Fragment implements SessionView {
     }
 
 
+    public interface SessionExerciseListener{
+
+       void onExerciseSelected(TrainingPlan plan,int selectedExerciseIndex);
+    }
 }
