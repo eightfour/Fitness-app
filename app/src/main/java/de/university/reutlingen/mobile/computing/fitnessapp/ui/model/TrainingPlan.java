@@ -10,9 +10,8 @@ import java.util.List;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class TrainingPlan implements Serializable {
 
-    @JsonProperty("id")
+    @JsonProperty("identifier")
     private String identifier;
-
 
     @JsonProperty("exerciseList")
     private List<Exercise> exerciseList;

@@ -38,6 +38,9 @@ public class MainActivity extends AppCompatActivity
         implements MainView, NavigationView.OnNavigationItemSelectedListener, LoginFragment.OnLoginListener, TrainingPlansFragment.TrainingPlanSelectionListener,
         TrainingPlanDetailFragment.TrainingPlanDetailSelectionListener, TrainingPlanDetailPresenter.startSessionListener,SessionFragment.SessionExerciseListener {
 
+    public static final String BACKEND_HOSTNAME = "10.0.2.2";
+    public static final String BACKEND_PORT = "8090";
+
     public static final String LOGIN_FRAGMENT_BACKSTACK_ENTRY = "main-activity_login-fragment";
     public static final String TRAINING_PLANS_FRAGMENT_BACKSTACK_ENTRY = "main-activity_training-plans-fragment";
     public static final String TRAINING_PLAN_DETAIL_FRAGMENT_BACKSTACK_ENTRY = "main-activity_training-plan-detail-fragment";

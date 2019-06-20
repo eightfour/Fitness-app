@@ -29,7 +29,7 @@ public class Exercise {
     @JsonProperty("aimUnit")
     private String aimUnit;
 
-    @JsonProperty("id")
+    @JsonProperty("identifier")
     private String id;
 
     private Boolean exerciseIsCompleted = false;

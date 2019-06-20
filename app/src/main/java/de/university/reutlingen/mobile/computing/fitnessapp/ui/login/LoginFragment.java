@@ -4,10 +4,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import de.university.reutlingen.mobile.computing.fitnessapp.R;
 
@@ -40,12 +42,19 @@ public class LoginFragment extends Fragment implements LoginView {
     }
 
     @Override
-    public void init(){
-
+    public void init() {
         getView().setBackgroundColor(Color.WHITE);
 
         final View loginBtn = getView().findViewById(R.id.btn_login);
-        loginBtn.setOnClickListener(clickedView -> loginPresenter.onLogin());
+        loginBtn.setOnClickListener(this::onLoginClicked);
+    }
+
+    private void onLoginClicked(View clickedView) {
+        if (clickedView.getId() == R.id.btn_login ){
+            final String username = ((TextInputLayout) getView().findViewById(R.id.username_textInputLayout)).getEditText().getText().toString();
+            final String password = ((TextInputLayout) getView().findViewById(R.id.password_textInputLayout)).getEditText().getText().toString();
+            loginPresenter.onLogin(username, password);
+        }
     }
 
     @Override

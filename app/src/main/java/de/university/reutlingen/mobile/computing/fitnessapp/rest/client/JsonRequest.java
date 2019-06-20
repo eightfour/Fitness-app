@@ -17,6 +17,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
 import java.util.Map;
 
+import de.university.reutlingen.mobile.computing.fitnessapp.security.SecurityContextHolder;
+
 public abstract class JsonRequest<T> extends Request<T> {
 
     private final Response.Listener<T> responseListener;
@@ -45,9 +47,7 @@ public abstract class JsonRequest<T> extends Request<T> {
     @Override
     public Map<String, String> getHeaders() throws AuthFailureError {
         final Map<String, String> headers = new HashMap<>();
-        String creds = String.format("%s:%s", "user", "8d7910b0-7564-4ba6-9227-2f501049536f");
-        String auth = "Basic " + Base64.encodeToString(creds.getBytes(), Base64.DEFAULT);
-        headers.put("Authorization", auth);
+        headers.put("cookie", String.format("SESSION=%s", SecurityContextHolder.getContext().getCookie().getSessionIdentifier()));
         return headers;
     }
 
