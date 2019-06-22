@@ -129,14 +129,25 @@
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/linearLayout4">
 
+
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_session_previous_Exercise"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
+            android:layout_marginLeft="30dp"
             android:layout_marginBottom="30dp"
             android:clickable="true"
             android:src="@android:drawable/ic_media_previous" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_session_save_session"
+            android:layout_width="68dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:layout_marginLeft="30dp"
+            android:src="@android:drawable/ic_menu_save" />
+
+
 
         <android.support.design.widget.FloatingActionButton
             android:id="@+id/fab_session_start_Exercise"

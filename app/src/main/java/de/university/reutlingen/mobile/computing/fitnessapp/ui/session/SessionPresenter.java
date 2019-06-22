@@ -8,7 +8,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.Volley;
+
 import de.university.reutlingen.mobile.computing.fitnessapp.R;
+import de.university.reutlingen.mobile.computing.fitnessapp.rest.client.v1.SessionRequest;
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.model.TrainingPlan;
 import de.university.reutlingen.mobile.computing.fitnessapp.ui.plan.detail.TrainingPlanDetailPresenter;
 
@@ -28,6 +35,7 @@ public class SessionPresenter {
     private FloatingActionButton fabStartExercise;
     private Button btnIncreaseWeight;
     private Button btnDecreaseWeight;
+    private FloatingActionButton fabSaveSession;
 
 
 
@@ -73,7 +81,21 @@ public class SessionPresenter {
             }
         });
 
-        //Floating Action Buttons that let you navigate to another Exercise
+        //Floating Action Buttons that let you navigate to another Exercise or save current session
+        fabSaveSession = sessionView.getView().findViewById(R.id.fab_session_save_session);
+        fabSaveSession.setOnClickListener(v -> {
+
+
+            RequestQueue queue = Volley.newRequestQueue(this.sessionView.getContext());
+            System.out.println("FAB Save session is clicked");
+            //TODO Fix SessionPresenter throwing 'Too many follow-up requests'-Exception
+            SessionRequest sessionRequest = new SessionRequest(this.trainingPlan, errorListener-> {
+                throw new IllegalStateException("Could not save current session, error : " +  errorListener.getMessage());
+            });
+            queue.add(sessionRequest);
+
+
+        });
         fabNextExercise = sessionView.getView().findViewById(R.id.fab_session_next_Exercise);
         fabNextExercise.setOnClickListener(v -> {
 

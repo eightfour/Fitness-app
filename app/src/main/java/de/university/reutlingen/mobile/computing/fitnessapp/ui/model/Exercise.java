@@ -32,6 +32,9 @@ public class Exercise {
     @JsonProperty("identifier")
     private String id;
 
+    @JsonProperty("repetitionUnit")
+    private String repetitionUnit;
+
     private Boolean exerciseIsCompleted = false;
 
     @Override
@@ -43,6 +46,8 @@ public class Exercise {
         }
         return exerciseDetail.toString()+"\n" + weightOutput;
     }
+
+    public String getRepetitionUnit() {return repetitionUnit;}
 
     public Boolean getExerciseIsCompleted() {return exerciseIsCompleted;}
 

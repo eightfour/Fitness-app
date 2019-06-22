@@ -4,6 +4,9 @@ import android.se.omapi.Session;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.CursorAdapter;
+import android.widget.Spinner;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -28,7 +31,6 @@ public class TrainingPlanDetailPresenter {
         this.view = view;
         this.planId = planId;
         this.btnStartSessionFragment = this.view.getView().findViewById(R.id.fab_show_session_fragment);
-
         // Set the listener
         if (view.getContext() instanceof TrainingPlanDetailPresenter.startSessionListener){
             this.sessionListener = (TrainingPlanDetailPresenter.startSessionListener) view.getContext();

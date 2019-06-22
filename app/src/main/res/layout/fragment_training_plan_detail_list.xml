@@ -10,6 +10,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.plan.detail.TrainingPlanDetailFragment">
 
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/trainingPlanDetailList"
         android:name="de.university.reutlingen.mobile.computing.fitnessapp.ui.plan.detail.TrainingPlanDetailFragment"
@@ -43,4 +44,5 @@
         app:layout_constraintEnd_toEndOf="@+id/trainingPlanDetailList"
         app:srcCompat="@android:drawable/ic_media_play"
         tools:src="@android:drawable/ic_media_play" />
+
 </android.support.constraint.ConstraintLayout>
