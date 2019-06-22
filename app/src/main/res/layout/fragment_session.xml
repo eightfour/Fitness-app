@@ -7,12 +7,14 @@
     android:layout_height="match_parent"
     tools:context=".ui.session.SessionFragment" >
 
+    
+
     <LinearLayout
         android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -25,9 +27,9 @@
 
         <TextView
             android:id="@+id/weight"
-            android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="40dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
             android:text="@string/text_view_session_weight"
             android:textSize="32dp" />
