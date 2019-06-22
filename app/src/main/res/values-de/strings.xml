@@ -24,4 +24,5 @@
     <string name="text_view_nr_sets">Sätze</string>
     <string name="text_view_session_breaktime">Pause</string>
     <string name="text_view_session_weight">Gewicht</string>
+    <string name="btn_register">Registrieren</string>
 </resources>

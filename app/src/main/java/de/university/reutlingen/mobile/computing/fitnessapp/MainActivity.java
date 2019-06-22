@@ -147,6 +147,7 @@ public class MainActivity extends AppCompatActivity
     @Override
     public void hideLoginFragment() {
         getSupportFragmentManager().popBackStack(LOGIN_FRAGMENT_BACKSTACK_ENTRY, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        replaceFragment(new TrainingPlansFragment(),TRAINING_PLANS_FRAGMENT_BACKSTACK_ENTRY,true);
     }
 
     /**

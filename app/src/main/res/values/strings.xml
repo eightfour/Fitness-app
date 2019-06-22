@@ -33,6 +33,7 @@
     <string name="btn_plus_symbol" translatable="false">+</string>
     <string name="plain_text_stay_fit_logo_part_1" translatable="false">Stay</string>
     <string name="plain_text_stay_fit_logo_part_2" translatable="false">Fit</string>
+    <string name="btn_register">Register</string>
 
 
 </resources>
