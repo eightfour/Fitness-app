@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.login.LoginFragment">
 
-    <EditText
+    <TextView
         android:id="@+id/editText_stay_fit_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,9 +14,10 @@
         android:layout_marginEnd="188dp"
         android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
+        android:textColor="@color/cardview_dark_background"
         android:ems="20"
         android:gravity="right"
-        android:inputType="text"
+        android:inputType="none"
         android:text="@string/plain_text_stay_fit_logo_part_1"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/username_textInputLayout"
@@ -24,18 +25,18 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.482" />
 
-    <EditText
+    <TextView
         android:id="@+id/editText2"
-        android:layout_width="211dp"
-        android:layout_height="89dp"
+        android:layout_width="208dp"
+        android:layout_height="60dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="@android:color/transparent"
-        android:textColor="@color/colorGrey"
-        android:fontFamily=""
         android:ems="10"
-        android:inputType="text"
+        android:fontFamily=""
+        android:inputType="none"
         android:text="@string/plain_text_stay_fit_logo_part_2"
+        android:textColor="@color/colorGrey"
         android:textSize="40sp"
         app:layout_constraintBottom_toTopOf="@+id/username_textInputLayout"
         app:layout_constraintStart_toEndOf="@+id/editText_stay_fit_logo"
