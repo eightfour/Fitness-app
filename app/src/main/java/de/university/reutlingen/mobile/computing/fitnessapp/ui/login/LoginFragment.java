@@ -6,6 +6,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ public class LoginFragment extends Fragment implements LoginView {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment. DO NOTHING ELSE HERE
         return inflater.inflate(R.layout.fragment_login, container, false);
+
     }
 
     @Override
@@ -39,6 +41,16 @@ public class LoginFragment extends Fragment implements LoginView {
             throw new RuntimeException(getContext().toString()
                     + " must implement OnFragmentInteractionListener");
         }
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+    }
+    @Override
+    public void onStop() {
+        super.onStop();
+        ((AppCompatActivity)getActivity()).getSupportActionBar().show();
     }
 
     @Override
