@@ -89,8 +89,10 @@ public class SessionPresenter {
             RequestQueue queue = Volley.newRequestQueue(this.sessionView.getContext());
             System.out.println("FAB Save session is clicked");
             //TODO Fix SessionPresenter throwing 'Too many follow-up requests'-Exception
-            SessionRequest sessionRequest = new SessionRequest(this.trainingPlan, errorListener-> {
-                throw new IllegalStateException("Could not save current session, error : " +  errorListener.getMessage());
+            SessionRequest sessionRequest = new SessionRequest(this.trainingPlan, errorListener -> {
+                throw new IllegalStateException("Could not save current session, error : " + errorListener.toString());
+            },responseListener -> {
+                System.out.println("sessions successfully saved");
             });
             queue.add(sessionRequest);
 
@@ -145,14 +147,14 @@ public class SessionPresenter {
         btnIncreaseWeight = sessionView.getView().findViewById(R.id.btn_session_increase_weight_value);
         btnIncreaseWeight.setOnClickListener(v -> {
 
-           trainingPlan.getExerciseList().get(fabChangeExerciseIndex).setIntensityLevel(Double.toString(Double.parseDouble(trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getIntensityLevel() )+ 2.5));
+           trainingPlan.getExerciseList().get(fabChangeExerciseIndex).setIntensityLevel(Integer.toString(Integer.parseInt(trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getIntensityLevel() )+ 1));
             sessionWeightValue.setText(trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getIntensityLevel() + "kg");
 
         });
         btnDecreaseWeight = sessionView.getView().findViewById(R.id.btn_session_decrease_weight_value);
         btnDecreaseWeight.setOnClickListener(v -> {
 
-            trainingPlan.getExerciseList().get(fabChangeExerciseIndex).setIntensityLevel(Double.toString(Double.parseDouble(trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getIntensityLevel() )- 2.5));
+            trainingPlan.getExerciseList().get(fabChangeExerciseIndex).setIntensityLevel(Integer.toString(Integer.parseInt(trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getIntensityLevel() )- 1));
             sessionWeightValue.setText(trainingPlan.getExerciseList().get(fabChangeExerciseIndex).getIntensityLevel() + "kg");
 
         });

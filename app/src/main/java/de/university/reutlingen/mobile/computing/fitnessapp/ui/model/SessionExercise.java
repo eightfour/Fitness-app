@@ -5,18 +5,17 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SessionExercise {
 
-    @JsonCreator
-    public SessionExercise(TrainingPlan plan, int nrOfExercise){
+    public SessionExercise() {
+        // nothing to do
+    }
 
-        System.out.println("current Exercise: " + nrOfExercise + " current exercise id : " + plan.getExerciseList().get(nrOfExercise).getId());
-        this.identifier = plan.getExerciseList().get(nrOfExercise).getId();
+    public SessionExercise(TrainingPlan plan, int nrOfExercise) {
+
+        System.out.println("current Exercise: " + nrOfExercise + " current exercise id : " + plan.getExerciseList().get(nrOfExercise).getExerciseDetail().id);
+        this.identifier = plan.getExerciseList().get(nrOfExercise).getExerciseDetail().id;
     }
 
     @JsonProperty("identifier")
-    private String identifier;
-
-
-
-
+    public String identifier;
 
 }

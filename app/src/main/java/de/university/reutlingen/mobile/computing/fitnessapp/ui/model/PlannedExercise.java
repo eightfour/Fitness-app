@@ -2,17 +2,21 @@ package de.university.reutlingen.mobile.computing.fitnessapp.ui.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+@JsonPropertyOrder({"exercise","numOfRepetitions"})
 public class PlannedExercise {
 
-    @JsonCreator
+    public PlannedExercise() {
+        // nothing to do
+    }
+
     public PlannedExercise(TrainingPlan plan,int nrOFExercise){
 
-        this.numOfRepetitions = plan.getExerciseList().get(nrOFExercise).getNumOfRepetitions();
-        this.breakDurationInSeconds =  plan.getExerciseList().get(nrOFExercise).getBreakDurationInSeconds();
+        this.numOfRepetitions =Integer.parseInt( plan.getExerciseList().get(nrOFExercise).getNumOfRepetitions());
+        this.breakDurationInSeconds = Integer.parseInt( plan.getExerciseList().get(nrOFExercise).getBreakDurationInSeconds());
         this.repetitionUnit =  plan.getExerciseList().get(nrOFExercise).getRepetitionUnit();
-        this.numOfSets =  plan.getExerciseList().get(nrOFExercise).getNumOfSets();
-        this.intensityLevel =  plan.getExerciseList().get(nrOFExercise).getIntensityLevel();
+        this.numOfSets =  Integer.parseInt(plan.getExerciseList().get(nrOFExercise).getNumOfSets());
+        this.intensityLevel =  Integer.parseInt(plan.getExerciseList().get(nrOFExercise).getIntensityLevel());
         this.intensityUnit =  plan.getExerciseList().get(nrOFExercise).getIntensityUnit();
         this.aimUnit =  plan.getExerciseList().get(nrOFExercise).getAimUnit();
 
@@ -24,29 +28,27 @@ public class PlannedExercise {
 
 
     @JsonProperty("exercise")
-    private SessionExercise exercise;
+    public SessionExercise exercise;
 
     @JsonProperty("numOfRepetitions")
-    private String numOfRepetitions;
+    public int numOfRepetitions;
 
     @JsonProperty("breakDurationInSeconds")
-    private String breakDurationInSeconds;
+    public int breakDurationInSeconds;
 
     @JsonProperty("repetitionUnit")
-    private String repetitionUnit;
+    public String repetitionUnit;
 
     @JsonProperty("numOfSets")
-    private String numOfSets;
+    public int numOfSets;
 
     @JsonProperty("intensityLevel")
-    private String intensityLevel;
+    public int intensityLevel;
 
     @JsonProperty("intensityUnit")
-    private String intensityUnit;
+    public String intensityUnit;
 
     @JsonProperty("aimUnit")
-    private String aimUnit;
-
-
+    public String aimUnit;
 
 }

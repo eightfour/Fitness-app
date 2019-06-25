@@ -29,9 +29,6 @@ public class Exercise {
     @JsonProperty("aimUnit")
     private String aimUnit;
 
-    @JsonProperty("identifier")
-    private String id;
-
     @JsonProperty("repetitionUnit")
     private String repetitionUnit;
 
@@ -53,10 +50,10 @@ public class Exercise {
 
     public void setExerciseIsCompleted(Boolean exerciseIsCompleted) {this.exerciseIsCompleted = exerciseIsCompleted;   }
 
-    public String getId(){return this.id; }
     public ExerciseDetail getExerciseDetail() {
         return exerciseDetail;
     }
+
     public String getAimUnit() {
         return aimUnit;
     }

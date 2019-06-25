@@ -66,8 +66,6 @@ public class TrainingPlanDetailFragment extends Fragment implements TrainingPlan
             this.presenter = new TrainingPlanDetailPresenter(this, getArguments().getString(PLAN_ID));
         } else {
             throw new IllegalArgumentException(ErrorCodes.MISSING_PLAN_ID.getMessage());
-
-
         }
 
 

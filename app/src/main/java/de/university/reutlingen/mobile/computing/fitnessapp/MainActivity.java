@@ -186,16 +186,13 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(Exercise item, TextView view) {
-
         final Bundle bundle = new Bundle();
-        bundle.putString(TrainingPlanDetailFragment.PLAN_ID, item.getId());
-
+        bundle.putString(TrainingPlanDetailFragment.PLAN_ID, item.getExerciseDetail().id);
     }
 
 
     @Override
     public void onSessionStart(View view,TrainingPlan plan,int selectedExerciseIndex) {
-
         Bundle bundle = new Bundle();
         SessionFragment sessionFragment = new SessionFragment();
         bundle.putSerializable("trainingPlan",  plan);
@@ -204,13 +201,10 @@ public class MainActivity extends AppCompatActivity
 
         sessionFragment.setArguments(bundle);
         this.replaceFragment(sessionFragment,SESSION_FRAGMENT,true);
-
-
     }
 
     @Override
     public void onExerciseSelected(TrainingPlan plan, int selectedExerciseIndex) {
-
         Bundle bundle = new Bundle();
         SessionDetailFragment sessionDetailFragment = new SessionDetailFragment();
         bundle.putSerializable("trainingPlan",  plan);
@@ -219,6 +213,5 @@ public class MainActivity extends AppCompatActivity
         sessionDetailFragment.setArguments(bundle);
         System.out.println("entered onExerciseSelected in MainActivity");
         this.replaceFragment(sessionDetailFragment,SESSION_DETAIL_FRAGMENT,true);
-
     }
 }

@@ -5,14 +5,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SessionTrainingPlan {
 
-    @JsonCreator
+
     public SessionTrainingPlan(TrainingPlan plan){
         this.identifier = plan.getIdentifier();
     }
-    @JsonProperty("Identifier")
+
+    @JsonProperty("identifier")
     private  String identifier;
-
-
-
 
 }

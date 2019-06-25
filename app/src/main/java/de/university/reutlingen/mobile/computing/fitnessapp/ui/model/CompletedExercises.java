@@ -2,41 +2,39 @@ package de.university.reutlingen.mobile.computing.fitnessapp.ui.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@JsonPropertyOrder({"plannedExercise","numOfRepetitions",""})
 public class CompletedExercises {
 
-    @JsonCreator
+
+    public CompletedExercises () {
+        // nothing to do
+    }
+
     public CompletedExercises(TrainingPlan plan, int currentExercise){
-
-
         this.plannedExercise = new PlannedExercise(plan,currentExercise);
-
-        this.numOfRepetitions = plan.getExerciseList().get(currentExercise).getNumOfRepetitions();
-        this.breakDurationInSeconds =  plan.getExerciseList().get(currentExercise).getBreakDurationInSeconds();
-        this.numOfSets =  plan.getExerciseList().get(currentExercise).getNumOfSets();
-        this.intensityLevel =  plan.getExerciseList().get(currentExercise).getIntensityLevel();
-
-
-
-
+        this.numOfRepetitions = Integer.parseInt(plan.getExerciseList().get(currentExercise).getNumOfRepetitions());
+        this.breakDurationInSeconds = Integer.parseInt(plan.getExerciseList().get(currentExercise).getBreakDurationInSeconds());
+        this.numOfSets =  Integer.parseInt(plan.getExerciseList().get(currentExercise).getNumOfSets());
+        this.intensityLevel = Integer.parseInt(plan.getExerciseList().get(currentExercise).getIntensityLevel());
     }
 
 
     @JsonProperty("plannedExercise")
-    private PlannedExercise plannedExercise;
+    public PlannedExercise plannedExercise;
 
     @JsonProperty("numOfRepetitions")
-    private String numOfRepetitions;
+    public int numOfRepetitions;
 
     @JsonProperty("numOfSets")
-    private String numOfSets;
+    public int numOfSets;
 
     @JsonProperty("breakDurationInSeconds")
-    private String breakDurationInSeconds;
+    public int breakDurationInSeconds;
 
     @JsonProperty("intensityLevel")
-    private String intensityLevel;
+    public int intensityLevel;
 }

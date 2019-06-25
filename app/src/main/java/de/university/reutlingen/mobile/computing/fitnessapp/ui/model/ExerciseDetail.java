@@ -5,17 +5,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class ExerciseDetail {
 
+    @JsonProperty("identifier")
+    public String id;
+
     @JsonProperty("name")
-    private String name;
+    public String name;
 
     @JsonProperty("description")
-    private String description;
-
-    @Override
-    public String toString(){
-        return name+"\n"+description;
-    }
-
+    public String description;
 
     public String getDescription() {
         return description;

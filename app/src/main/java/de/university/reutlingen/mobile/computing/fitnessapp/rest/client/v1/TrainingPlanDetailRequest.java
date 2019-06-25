@@ -24,7 +24,8 @@ public class TrainingPlanDetailRequest extends JsonRequest<TrainingPlan> {
     protected TrainingPlan doParseBody(String rawBody) throws IOException {
         System.out.println("raw body is : " + rawBody);
         final ObjectMapper objectMapper = new ObjectMapper();
-        return objectMapper.readValue(rawBody, TrainingPlan.class);
+        TrainingPlan trainingPlan = objectMapper.readValue(rawBody, TrainingPlan.class);
+        return trainingPlan;
     }
 
     private static String buildUrl(String identifier) {
