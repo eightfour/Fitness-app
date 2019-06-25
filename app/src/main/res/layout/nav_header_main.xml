@@ -48,7 +48,6 @@
        android:text="@string/plain_text_stay_fit_logo_part_2"
        android:textColor="@color/colorGrey"
        android:textSize="40sp"
-       app:layout_constraintBottom_toTopOf="@+id/username_textInputLayout"
        app:layout_constraintStart_toEndOf="@+id/editText_stay_fit_logo"
        app:layout_constraintTop_toTopOf="parent" />
 
